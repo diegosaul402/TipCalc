@@ -12,6 +12,6 @@
     <include layout="@layout/content_tip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_tip"
+        android:id="@+id/tipContent"
     />
 </RelativeLayout>
