@@ -29,5 +29,5 @@ ext{
     buildToolsVersion = "24.0.1"
 
     supportLibraryVersion = '24.2.0'
-    butterknifeVersion = '7.0.1'
+    butterknifeVersion = '8.4.0'
 }
