@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    @OnClick(R.id.btnIncrease)
+    @OnClick(R.id.BtnSubmit)
     public void handleSubmit(){
 
         hideKeyboard();
@@ -94,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
             txtTip.setText(strTip);
         }
     }
-    @OnClick(R.id.btnIncrease)
+
     public void handleClickIncrease(){
         hideKeyboard();
         handletipChange(TIP_STEP_CHANGE);
     }
-    @OnClick(R.id.btnDecrease)
+
     public void handleClickDecrease(){
         hideKeyboard();
         handletipChange(TIP_STEP_CHANGE);
