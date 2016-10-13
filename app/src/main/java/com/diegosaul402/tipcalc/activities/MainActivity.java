@@ -21,6 +21,9 @@ import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.TipCalcApp;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragment;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragmentListener;
+import com.diegosaul402.tipcalc.models.TipRecord;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,11 +86,14 @@ public class MainActivity extends AppCompatActivity {
         if(!strInputTotal.isEmpty()){
             double total = Double.parseDouble(strInputTotal);
             int tipPercentage = getTipPercentage();
-            double tip = total*(tipPercentage/100d);
 
-            String strTip = String.format(getString(R.string.global_message_tip),tip);
+            TipRecord record = new TipRecord();
+            record.setBill(total);
+            record.setTipPercentage(tipPercentage);
+            record.setTimestamp(new Date());
 
-            fragmentListener.action("10");
+            String strTip = String.format(getString(R.string.global_message_tip), record.getTip());
+            fragmentListener.addToList(record);
 
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(strTip);
