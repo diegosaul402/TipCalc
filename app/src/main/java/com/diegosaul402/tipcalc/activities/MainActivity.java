@@ -25,27 +25,27 @@ import com.diegosaul402.tipcalc.models.TipRecord;
 
 import java.util.Date;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.inputBill)
+    @Bind(R.id.inputBill)
     EditText inputBill;
-    @BindView(R.id.BtnSubmit)
+    @Bind(R.id.BtnSubmit)
     Button BtnSubmit;
-    @BindView(R.id.inputPercentage)
+    @Bind(R.id.inputPercentage)
     EditText inputPercentage;
-    @BindView(R.id.btnIncrease)
+    @Bind(R.id.btnIncrease)
     Button btnIncrease;
-    @BindView(R.id.btnDecrease)
+    @Bind(R.id.btnDecrease)
     Button btnDecrease;
-    @BindView(R.id.btnClear)
+    @Bind(R.id.btnClear)
     Button btnClear;
-    @BindView(R.id.txtTip)
+    @Bind(R.id.txtTip)
     TextView txtTip;
-    @BindView(R.id.content_tip)
+    @Bind(R.id.content_tip)
     RelativeLayout contentTip;
 
     private TipHistoryListFragmentListener fragmentListener;
