@@ -93,8 +93,15 @@ public class MainActivity extends AppCompatActivity {
 
             txtTip.setVisibility(View.VISIBLE);
             txtTip.setText(strTip);
+            inputBill.setText("");
         }
     }
+    @OnClick(R.id.btnClear)
+    public void handleClear(){
+        fragmentListener.clearList();
+        inputPercentage.setText("");
+    }
+
     @OnClick(R.id.btnIncrease)
     public void handleClickIncrease(){
         hideKeyboard();

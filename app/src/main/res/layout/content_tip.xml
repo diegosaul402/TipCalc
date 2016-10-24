@@ -28,6 +28,7 @@
         android:hint="@string/main.hint.percentage"
         android:ems="10"
         android:id="@+id/inputPercentage"
+        android:inputType="numberDecimal"
         android:layout_alignBottom="@+id/btnIncrease"
         android:layout_toStartOf="@+id/btnIncrease"
         android:layout_toLeftOf="@+id/btnIncrease"/>
