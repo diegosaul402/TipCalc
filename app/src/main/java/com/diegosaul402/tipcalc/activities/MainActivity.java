@@ -2,7 +2,6 @@ package com.diegosaul402.tipcalc.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.input.InputManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethod;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnClear;
     @Bind(R.id.txtTip)
     TextView txtTip;
-    @Bind(R.id.content_tip)
-    RelativeLayout contentTip;
 
     private TipHistoryListFragmentListener fragmentListener;
     private final static int TIP_STEP_CHANGE = 1;
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         TipHistoryListFragment fragment = (TipHistoryListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
 
         fragment.setRetainInstance(true);
-        fragmentListener = fragment;
+        fragmentListener = (TipHistoryListFragmentListener) fragment;
     }
 
     @Override
@@ -99,37 +95,37 @@ public class MainActivity extends AppCompatActivity {
             txtTip.setText(strTip);
         }
     }
-
+    @OnClick(R.id.btnIncrease)
     public void handleClickIncrease(){
         hideKeyboard();
-        handletipChange(TIP_STEP_CHANGE);
+        handleTipChange(TIP_STEP_CHANGE);
     }
-
+    @OnClick(R.id.btnDecrease)
     public void handleClickDecrease(){
         hideKeyboard();
-        handletipChange(TIP_STEP_CHANGE);
+        handleTipChange(-TIP_STEP_CHANGE);
     }
     private int getTipPercentage() {
-        //crear una variable tipPercentage en la que guardemos de DEFAULT_TIP_CHANGE
-        //crear una string strInputTipPercentage que tome el valor del inputPercentage con su TRIM
-        //verificar cadena vacía
-        //si strInputTipPercentage no es vacía, sobreescrbir tipPercentage con strInputTipPercentage
-        // y pasarlo a entero
-        //si viene vacía hacer inputPercetage.seTText(String.ValueOf(DEFAULT_TIP_PERCENTAGE));
-        //mostrar en la interfaz tipPercentage
-        return DEFAULT_TIP_PERCENTAGE;
+        int tipPercentage = DEFAULT_TIP_PERCENTAGE;
+        String strInputTipPercentage = inputPercentage.getText().toString().trim();
+
+        if(!strInputTipPercentage.isEmpty()) {
+            tipPercentage = Integer.parseInt(strInputTipPercentage);
+        }
+        else {
+            inputPercentage.setText(String.valueOf(DEFAULT_TIP_PERCENTAGE));
+        }
+
+        return tipPercentage;
     }
 
-    public void handletipChange(int change){
-        int TipPercentage = getTipPercentage();
-        change += TipPercentage;
-        if(change>=0)
-        {
+    public void handleTipChange(int change){
+        int tipPercentage = getTipPercentage();
+        tipPercentage += change;
 
-        }else{
-
+        if(tipPercentage > 0) {
+            inputPercentage.setText(String.valueOf(tipPercentage));
         }
-        //Si tipPercentage > 0 colocar en su caja correspondiente
     }
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

@@ -17,14 +17,14 @@ import com.diegosaul402.tipcalc.models.TipRecord;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TipHistoryListFragment extends Fragment implements TipHistoryListFragmentListener{
-    @BindView(R.id.recyclerView)
+    @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
 
     TipAdapter adapter;

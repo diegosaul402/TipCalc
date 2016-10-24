@@ -28,16 +28,6 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
         this.dataset = dataset;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        @Bind(R.id.txtContent)
-        TextView txtContent;
-
-        public ViewHolder(View itemView){
-            super(itemView);
-            ButterKnife.bind(this,itemView);
-        }
-
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,7 +37,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataset.size();
     }
 
     @Override
@@ -67,5 +57,16 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
     public void clear(){
         dataset.clear();
         notifyDataSetChanged();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.txtContent)
+        TextView txtContent;
+
+        public ViewHolder(View itemView){
+            super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
     }
 }
