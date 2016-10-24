@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.models.TipRecord;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -23,11 +24,19 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
     private Context context;
     private List<TipRecord> dataset;
-    public TipAdapter(Context context, List<TipRecord> dataset){
+    private OnItemClickListener onItemClickListener;
+
+    public TipAdapter(Context context, List<TipRecord> dataset, OnItemClickListener onItemClickListener){
         this.context = context;
         this.dataset = dataset;
+        this.onItemClickListener = onItemClickListener;
     }
 
+    public TipAdapter(Context context, OnItemClickListener onItemClickListener){
+        this.context = context;
+        this.dataset = new ArrayList<TipRecord>();
+        this.onItemClickListener = onItemClickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,7 +55,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
         String strTip = String.format(context.getString(R.string.global_message_tip),element.getTip());
         holder.txtContent.setText(strTip);
-
+        holder.setOnItemClickListener(element, onItemClickListener);
     }
 
     public void add(TipRecord record){
@@ -59,14 +68,22 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.txtContent)
         TextView txtContent;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
+        public void setOnItemClickListener(final TipRecord element, final OnItemClickListener onItemClickListener) {
+          itemView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  onItemClickListener.onItemClick(element);
+              }
+          });
+        }
     }
 }
