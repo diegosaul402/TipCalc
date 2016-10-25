@@ -91,15 +91,16 @@ public class MainActivity extends AppCompatActivity {
             String strTip = String.format(getString(R.string.global_message_tip), record.getTip());
             fragmentListener.addToList(record);
 
-            txtTip.setVisibility(View.VISIBLE);
-            txtTip.setText(strTip);
-            inputBill.setText("");
+            //txtTip.setVisibility(View.VISIBLE);
+            //txtTip.setText(strTip);
         }
     }
     @OnClick(R.id.btnClear)
     public void handleClear(){
         fragmentListener.clearList();
         inputPercentage.setText("");
+        inputBill.setText("");
+        inputBill.requestFocus();
     }
 
     @OnClick(R.id.btnIncrease)

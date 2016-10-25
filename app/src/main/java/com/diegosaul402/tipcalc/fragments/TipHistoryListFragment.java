@@ -1,6 +1,7 @@
 package com.diegosaul402.tipcalc.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.diegosaul402.tipcalc.R;
+import com.diegosaul402.tipcalc.activities.DetailsActivity;
 import com.diegosaul402.tipcalc.adapters.OnItemClickListener;
 import com.diegosaul402.tipcalc.adapters.TipAdapter;
 import com.diegosaul402.tipcalc.models.TipRecord;
@@ -71,6 +73,13 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
     @Override
     public void onItemClick(TipRecord tipRecord){
         // TODO implementar la lógica para llamar una actividad enviándole la información de la  propina
+        Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
+        intent.putExtra("bill", tipRecord.getBill());
+        intent.putExtra("percentage", tipRecord.getTipPercentage());
+        intent.putExtra("tip", tipRecord.getTip());
+        intent.putExtra("date", tipRecord.getDateFormated());
+        startActivity(intent);
+
         Log.v("Msj", tipRecord.getDateFormated());
     }
 }
