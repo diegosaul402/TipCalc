@@ -1,6 +1,6 @@
 package com.diegosaul402.tipcalc.fragments;
 
-import com.diegosaul402.tipcalc.models.TipRecord;
+import com.diegosaul402.tipcalc.entity.TipRecord;
 
 /**
  * Created by diego on 10/10/16.

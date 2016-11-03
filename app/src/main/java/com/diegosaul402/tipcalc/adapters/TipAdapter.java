@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.diegosaul402.tipcalc.R;
-import com.diegosaul402.tipcalc.models.TipRecord;
+import com.diegosaul402.tipcalc.entity.TipRecord;
 
 import java.util.ArrayList;
 import java.util.List;

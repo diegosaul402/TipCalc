@@ -8,18 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.TipCalcApp;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragment;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragmentListener;
-import com.diegosaul402.tipcalc.models.TipRecord;
+import com.diegosaul402.tipcalc.entity.TipRecord;
 
 import java.util.Date;
 
