@@ -56,12 +56,4 @@ public class TipRecord {
         this.id = id;
     }
 
-    public double getTip(){
-        return bill*(tipPercentage/100d);
-    }
-
-    public String getDateFormated(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM dd, yyyy HH:mm");
-        return simpleDateFormat.format(timestamp);
-    }
 }

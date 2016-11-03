@@ -16,6 +16,7 @@ import com.diegosaul402.tipcalc.activities.DetailsActivity;
 import com.diegosaul402.tipcalc.adapters.OnItemClickListener;
 import com.diegosaul402.tipcalc.adapters.TipAdapter;
 import com.diegosaul402.tipcalc.entity.TipRecord;
+import com.diegosaul402.tipcalc.utils.TipUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -71,10 +72,10 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
         Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
         intent.putExtra("bill", tipRecord.getBill());
         intent.putExtra("percentage", tipRecord.getTipPercentage());
-        intent.putExtra("tip", tipRecord.getTip());
-        intent.putExtra("date", tipRecord.getDateFormated());
+        intent.putExtra("tip", TipUtils.getTip(tipRecord));
+        intent.putExtra("date", TipUtils.getDateFormated(tipRecord));
         startActivity(intent);
 
-        Log.v("Msj", tipRecord.getDateFormated());
+        Log.v("Msj", TipUtils.getDateFormated(tipRecord));
     }
 }
