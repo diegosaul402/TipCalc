@@ -64,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentListener = (TipHistoryListFragmentListener) fragment;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DBTearDown();
+    }
+
+    private void DBTearDown() {
+        FlowManager.destroy();
+    }
+
     private void initDB() {
         FlowManager.init(new FlowConfig.Builder(this).build());
 
