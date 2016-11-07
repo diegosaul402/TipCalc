@@ -15,10 +15,13 @@ import android.widget.TextView;
 
 import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.TipCalcApp;
+import com.diegosaul402.tipcalc.db.TipsDatabase;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragment;
 import com.diegosaul402.tipcalc.fragments.TipHistoryListFragmentListener;
 import com.diegosaul402.tipcalc.entity.TipRecord;
 import com.diegosaul402.tipcalc.utils.TipUtils;
+import com.raizlabs.android.dbflow.config.FlowConfig;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import java.util.Date;
 
@@ -53,10 +56,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        initDB();
+
         TipHistoryListFragment fragment = (TipHistoryListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
 
         fragment.setRetainInstance(true);
         fragmentListener = (TipHistoryListFragmentListener) fragment;
+    }
+
+    private void initDB() {
+        FlowManager.init(new FlowConfig.Builder(this).build());
+
+        FlowManager.getDatabase(TipsDatabase.class).getWritableDatabase();
     }
 
     @Override
