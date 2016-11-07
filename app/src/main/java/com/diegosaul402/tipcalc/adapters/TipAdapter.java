@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.entity.TipRecord;
 import com.diegosaul402.tipcalc.utils.TipUtils;
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,10 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
         this.onItemClickListener = onItemClickListener;
     }
 
+    public  void init(){
+        dataset = new Select().from(TipRecord.class).queryList();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row,parent, false);
@@ -59,10 +64,12 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
         holder.setOnItemClickListener(element, onItemClickListener);
     }
 
+
     public void add(TipRecord record){
-            //dataset.add(0, record);
-            record.save();
-            notifyDataSetChanged();
+        //dataset.add(0, record);
+        record.save();
+        dataset = new Select().from(TipRecord.class).queryList();
+        notifyDataSetChanged();
     }
 
     public void clear(){

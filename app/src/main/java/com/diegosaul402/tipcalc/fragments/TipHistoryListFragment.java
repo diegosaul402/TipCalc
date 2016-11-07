@@ -56,6 +56,12 @@ public class TipHistoryListFragment extends Fragment implements TipHistoryListFr
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void initList() {
+        adapter.init();
+    }
+
     @Override
     public void addToList(TipRecord record) {
         adapter.add(record);

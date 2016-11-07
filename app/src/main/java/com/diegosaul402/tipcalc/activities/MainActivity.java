@@ -59,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         initDB();
 
         TipHistoryListFragment fragment = (TipHistoryListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
-
         fragment.setRetainInstance(true);
         fragmentListener = (TipHistoryListFragmentListener) fragment;
+
+        fragmentListener.initList();
     }
 
     @Override
