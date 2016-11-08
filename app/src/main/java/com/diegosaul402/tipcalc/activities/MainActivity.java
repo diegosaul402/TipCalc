@@ -28,6 +28,7 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -122,6 +123,22 @@ public class MainActivity extends AppCompatActivity {
         inputPercentage.setText("");
         inputBill.setText("");
         inputBill.requestFocus();
+    }
+
+    @OnFocusChange(R.id.inputBill)
+    public void checkEmptyBill(){
+        String strInputTotal = inputBill.getText().toString().trim();
+        if(strInputTotal.isEmpty() && !inputBill.hasFocus()){
+            inputBill.setError(getString(R.string.field_error));
+        }
+    }
+
+    @OnFocusChange(R.id.inputPercentage)
+    public void checkEmptyPercentage(){
+        String strInput = inputPercentage.getText().toString().trim();
+        if(strInput.isEmpty() && !inputPercentage.hasFocus()){
+            inputPercentage.setError(getString(R.string.field_error));
+        }
     }
 
     @OnClick(R.id.btnIncrease)
