@@ -9,10 +9,15 @@ import android.widget.TextView;
 
 import com.diegosaul402.tipcalc.R;
 import com.diegosaul402.tipcalc.entity.TipRecord;
+import com.diegosaul402.tipcalc.entity.TipRecord_Table;
 import com.diegosaul402.tipcalc.utils.TipUtils;
+import com.raizlabs.android.dbflow.sql.language.Delete;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -66,13 +71,14 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.ViewHolder>{
 
 
     public void add(TipRecord record){
-        //dataset.add(0, record);
         record.save();
-        dataset = new Select().from(TipRecord.class).queryList();
+        //dataset = new Select().from(TipRecord.class).queryList();
+        dataset = new Select().from(TipRecord.class).where().orderBy(TipRecord_Table.id, false).queryList();
         notifyDataSetChanged();
     }
 
     public void clear(){
+        Delete.table(TipRecord.class);
         dataset.clear();
         notifyDataSetChanged();
     }
